@@ -56,3 +56,17 @@ class BaseMixin:
             q = q.offset(page).limit(size)
         res = q.all()
         return [self.model2dict(r) for r in res], len(res)
+
+    def explict_query(self, page=None, size=None):
+        q = session.query(self.__class__)
+        for field in self.fields:
+            query_obj = getattr(self, field)
+            if query_obj:
+                q = q.filter(getattr(self.__class__, field) == query_obj)
+        q = q.order_by(self.__class__.id.desc())
+        if page and size:
+            page = (page - 1) * size
+            q = q.offset(page).limit(size)
+        print(q)
+        res = q.all()
+        return [self.model2dict(r) for r in res], len(res)

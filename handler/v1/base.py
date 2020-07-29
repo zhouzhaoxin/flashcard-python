@@ -21,7 +21,7 @@ class BaseHandler(web.RequestHandler):
         }
         res.update(data)
 
-        json_str = json.dumps(res)
+        json_str = json.dumps(res, ensure_ascii=False)
 
         json_p = self.get_argument('jsonp', '')
         if json_p:

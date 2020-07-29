@@ -18,3 +18,10 @@ class User(Base, BaseMixin):
     id = Column(Integer, primary_key=True)
     username = Column(String, default="")
     password = Column(String, default="")
+
+
+class CardType(Base, BaseMixin):
+    __tablename__ = "card_type"
+    id = Column(Integer, primary_key=True)
+    tp = Column(Integer, default=-1)
+    name = Column(String, default="")
