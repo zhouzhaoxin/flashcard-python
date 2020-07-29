@@ -1,0 +1,2 @@
+online:
+	supervisorctl restart all
