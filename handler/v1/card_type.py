@@ -13,7 +13,7 @@ class CardTypeHandler(APIHandler):
         size = int(self.get_argument("size", "10"))
         card_type = CardType(name=name, id=id, tp=tp)
         types, count = card_type.query(page=page, size=size)
-        return self.send_json({'cards': types, 'count': count})
+        return self.send_json({'types': types, 'count': count})
 
     async def _post(self):
         data = tornado.escape.json_decode(self.request.body)

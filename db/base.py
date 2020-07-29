@@ -24,7 +24,7 @@ class BaseMixin:
         return class_mapper(self.__class__).columns.keys()
 
     def add(self):
-        if id and int(self.id) < 0:
+        if self.id and int(self.id) < 0:
             self.id = None
         session.add(self)
         session.commit()
