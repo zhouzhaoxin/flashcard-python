@@ -47,6 +47,8 @@ class BaseMixin:
         for field in self.fields:
             query_obj = getattr(self, field)
             query_cls = getattr(self.__class__, field)
+            if field == 'id' and query_obj == -1:
+                continue
             if query_obj:
                 if type(query_cls.type) in (Integer, SmallInteger):
                     q = q.filter(getattr(self.__class__, field) == query_obj)
@@ -63,6 +65,8 @@ class BaseMixin:
         q = session.query(self.__class__)
         for field in self.fields:
             query_obj = getattr(self, field)
+            if field == 'id' and query_obj == -1:
+                continue
             if query_obj:
                 q = q.filter(getattr(self.__class__, field) == query_obj)
         q = q.order_by(self.__class__.id.desc())
