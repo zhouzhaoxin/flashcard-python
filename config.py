@@ -7,7 +7,7 @@ REMEMBER = {}
 
 @dataclass
 class Database:
-    SCHEMA: str = "mysql://flashcard:flashcard@127.0.0.1/flashcard"
+    SCHEMA: str = "mysql://flashcard:flashcard@127.0.0.1/flashcard?charset=utf8"
 
 
 @dataclass
