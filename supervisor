@@ -1,0 +1,13 @@
+[program:flashcard]
+command=/root/.pyenv/versions/3.8.5/bin/python3 app.py
+directory=/root/code/flashcard-python
+process_name=%(program_name)
+priority=999
+autostart=true
+autorestart=true
+startsecs=1
+startretries=3
+user=root
+redirect_stderr=true
+stdout_logfile=/root/logs/flashcard.log
+
