@@ -9,12 +9,10 @@ class RememberHandler(MobileHandler):
 
     async def _login(self):
         data = tornado.escape.json_decode(self.request.body)
-        print(data)
         user = User(**data)
-        _, c = user.explict_query()
-        print(c)
+        user, c = user.explict_query()
         assert c == 1, "用户名或密码错误"
-        return self.send_json()
+        return self.send_json(user[0])
 
     async def _signup(self):
         data = tornado.escape.json_decode(self.request.body)
@@ -23,7 +21,7 @@ class RememberHandler(MobileHandler):
         assert c == 0, "用户已存在"
         user = User(**data)
         user.add()
-        return self.send_json()
+        return self.send_json(user.model2dict(user))
 
     async def index(self):
         uid = self.get_argument("uid")

@@ -73,6 +73,5 @@ class BaseMixin:
         if page and size:
             page = (page - 1) * size
             q = q.offset(page).limit(size)
-        print(q)
         res = q.all()
         return [self.model2dict(r) for r in res], len(res)
