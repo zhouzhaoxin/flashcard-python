@@ -1,5 +1,6 @@
 import random
 
+from db.base import session, BaseMixin
 from db.model import Card
 from config import REMEMBER
 
@@ -18,3 +19,8 @@ def generate_unknown_ids(uid, tp):
 def remember_next(uid, curr):
     ids = REMEMBER[uid]['ids']
     return ids[curr % len(ids)]
+
+
+def get_cards_by_ids(ids):
+    cards = session.query(Card).filter(Card.id.in_(ids)).all()
+    return [BaseMixin.model2dict(r) for r in cards]

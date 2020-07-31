@@ -1,7 +1,7 @@
 import tornado
 
 from config import REMEMBER
-from db.db import generate_unknown_ids, remember_next
+from db.db import generate_unknown_ids, remember_next, get_cards_by_ids
 from db.model import Card, User
 from handler.v1.base import MobileHandler
 
@@ -36,9 +36,14 @@ class RememberHandler(MobileHandler):
         curr = int(self.get_argument("curr"))
         if uid not in REMEMBER:
             generate_unknown_ids(uid, tp)
-        card = Card(id=remember_next(uid, curr))
-        cards, _ = card.query()
-        return self.send_json(cards[0])
+        print(REMEMBER)
+        ids = REMEMBER[uid]["ids"][(curr - 1) * 10:10]
+        print(ids)
+        cards = get_cards_by_ids(ids)
+        return self.send_json({
+            "cards": cards,
+            "c": len(REMEMBER[uid]['ids'])
+        })
 
     async def known(self):
         uid = self.get_argument("uid")
