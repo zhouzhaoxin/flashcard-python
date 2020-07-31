@@ -37,7 +37,7 @@ class RememberHandler(MobileHandler):
         if uid not in REMEMBER:
             generate_unknown_ids(uid, tp)
         print(REMEMBER)
-        ids = REMEMBER[uid]["ids"][(curr - 1) * 10:10]
+        ids = REMEMBER[uid]["ids"][(curr - 1) * 10:(curr - 1) * 10 + 10]
         print(ids)
         cards = get_cards_by_ids(ids)
         return self.send_json({
