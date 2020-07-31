@@ -58,7 +58,7 @@ class RememberHandler(MobileHandler):
         uid = self.get_argument("uid")
         id = self.get_argument("id")
         tp = self.get_argument("tp")
-        card = Card(id=id, known=21)
+        card = Card(id=id, known=1)
         card.update()
         generate_unknown_ids(uid, tp)
         return self.send_json()
