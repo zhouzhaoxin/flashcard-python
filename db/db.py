@@ -6,7 +6,7 @@ from config import REMEMBER
 
 
 def generate_unknown_ids(uid, tp):
-    card = Card(uid=uid, known=0, tp=tp)
+    card = Card(uid=uid, known=1, tp=tp)
     cards, _ = card.query()
     ids = [card['id'] for card in cards]
     random.shuffle(ids)
