@@ -11,18 +11,10 @@ def generate_unknown_ids(uid, tp):
     random.shuffle(ids)
     remember_dict = {
         'ids': ids,
-        'curr': -1,
     }
     REMEMBER[uid] = remember_dict
 
 
-def remember_next(uid):
+def remember_next(uid, curr):
     ids = REMEMBER[uid]['ids']
-    REMEMBER[uid]['curr'] += 1
-    return ids[REMEMBER[uid]['curr'] % len(ids)]
-
-
-def remember_prev(uid):
-    ids = REMEMBER[uid]['ids']
-    REMEMBER[uid]['curr'] -= 1
-    return ids[REMEMBER[uid]['curr'] % len(ids)]
+    return ids[curr % len(ids)]

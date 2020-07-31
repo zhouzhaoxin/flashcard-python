@@ -10,7 +10,7 @@ ROUTERS = [
     (r"/v1/cards", CardsHandler),
     (r"/v1/users", UsersHandler),
     (r"/v1/card/type", CardTypeHandler),
-    (r"/v1/remember/?(index|next|prev|known|login|signup)?", RememberHandler),
+    (r"/v1/remember/?(index|next|known|login|signup)?", RememberHandler),
 ]
 
 
