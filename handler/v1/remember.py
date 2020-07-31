@@ -28,15 +28,21 @@ class RememberHandler(MobileHandler):
         tp = self.get_argument("tp")
         generate_unknown_ids(uid, tp)
         next_id = remember_next(uid)
-        return self.send_json(next_id)
+        card = Card(id=next_id)
+        cards, _ = card.query()
+        return self.send_json(cards[0])
 
     async def next(self):
         uid = self.get_argument("uid")
-        return self.send_json(remember_next(uid))
+        card = Card(id=remember_next(uid))
+        cards, _ = card.query()
+        return self.send_json(cards[0])
 
     async def prev(self):
         uid = self.get_argument("uid")
-        return self.send_json(remember_prev(uid))
+        card = Card(id=remember_prev(uid))
+        cards, _ = card.query()
+        return self.send_json(cards[0])
 
     async def known(self):
         uid = self.get_argument("uid")
